@@ -12,14 +12,14 @@
 </head>
 <body>
 
-<h1>Eventos</h1>
+<h1>Evento</h1>
 <h3><a href="/evento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista Evento</a></h3>
     <div th:each="evento : ${evento}" class="container">
         <div class="row">
-           <p><span th:text="${evento.nome"}></span></p>
-            <p><span th:text="${evento.local"}></span></p>
-            <p><span th:text="${evento.data"}></span></p>
-            <p><span th:text="${evento.horario"}></span></p>
+            <p>Nome:<span th:text="${evento.nome"}></span></p>
+            <p>Local:<span th:text="${evento.local"}></span></p>
+            <p>Data<span th:text="${evento.data"}></span></p>
+            <p>Horario<span th:text="${evento.horario"}></span></p>
 
 
         </div>

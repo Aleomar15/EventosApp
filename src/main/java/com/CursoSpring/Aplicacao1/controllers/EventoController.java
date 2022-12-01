@@ -30,11 +30,12 @@ public class EventoController {
         return mav;
 
     }
-    @RequestMapping("/{id}")
+    @RequestMapping(value= "/{id}", method=RequestMethod.GET)
     public ModelAndView detalhesEvento(@PathVariable("id") long id){
-        Evento ev = er.findById(id);
-        ModelAndView mav = new ModelAndView("detalhesEvento");
-        mav.addObject("evento",ev);
+        Evento evento = er.findById(id);
+        ModelAndView mav = new ModelAndView("evento/detalhesEvento");
+        mav.addObject("evento",evento);
+        System.out.println("evento" + evento);
         return mav;
     }
 
