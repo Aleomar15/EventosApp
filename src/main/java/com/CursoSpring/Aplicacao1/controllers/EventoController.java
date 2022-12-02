@@ -35,7 +35,6 @@ public class EventoController {
         Evento evento = er.findById(id);
         ModelAndView mav = new ModelAndView("evento/detalhesEvento");
         mav.addObject("evento",evento);
-        System.out.println("evento" + evento);
         return mav;
     }
 

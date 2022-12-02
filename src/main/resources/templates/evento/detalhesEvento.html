@@ -13,17 +13,21 @@
 <body>
 
 <h1>Evento</h1>
-<h3><a href="/evento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista Evento</a></h3>
-    <div th:each="evento : ${evento}" class="container">
+    <h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista Evento</a></h3>
+    <div th:each="evento : ${evento}" class="container detalhesEvento">
+        <h5>Detalhes do Evento</h5>
         <div class="row">
-            <p>Nome:<span th:text="${evento.nome"}></span></p>
-            <p>Local:<span th:text="${evento.local"}></span></p>
-            <p>Data<span th:text="${evento.data"}></span></p>
-            <p>Horario<span th:text="${evento.horario"}></span></p>
-
-
+            <p>Nome: <span th:text="${evento.nome}"></span></p>
+            <p>Local: <span th:text="${evento.local}"></span></p>
+            <p>Data: <span th:text="${evento.data}"></span></p>
+            <p>Horario: <span th:text="${evento.horario}"></span></p>
         </div>
+        <form method="post">
+            Nome:<input type="text" value="" name="nomeConvidado">
+            Rg:<input type="text" value="" name="rg">
+            <button class="waves-effect waves-light btn" type="submit">Adicionar</button>
 
+        </form>
     </div>
 
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.6.1.min.js"></script>
