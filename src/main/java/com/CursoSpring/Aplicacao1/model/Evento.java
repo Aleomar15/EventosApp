@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Evento implements Serializable {
 
-    private static final long serialVersionUID=1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -15,7 +15,7 @@ public class Evento implements Serializable {
     private String local;
     private String data;
     private String horario;
-    @OneToMany
+    @OneToMany(mappedBy = "evento")
     private List<Convidado> convidados;
 
     public long getId() {

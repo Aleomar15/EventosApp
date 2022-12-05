@@ -1,16 +1,24 @@
 package com.CursoSpring.Aplicacao1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Convidado {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String rg;
     private String nomeConvidado;
     @ManyToOne
     private Evento evento;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getRg() {
         return rg;
@@ -24,8 +32,8 @@ public class Convidado {
         return nomeConvidado;
     }
 
-    public void setNomeConvidado(String nomeconvidado) {
-        this.nomeConvidado = nomeconvidado;
+    public void setNomeConvidado(String nomeConvidado) {
+        this.nomeConvidado = nomeConvidado;
     }
 
     public Evento getEvento() {

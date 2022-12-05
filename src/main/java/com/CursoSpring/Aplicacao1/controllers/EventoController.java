@@ -1,6 +1,8 @@
 package com.CursoSpring.Aplicacao1.controllers;
 
+import com.CursoSpring.Aplicacao1.model.Convidado;
 import com.CursoSpring.Aplicacao1.model.Evento;
+import com.CursoSpring.Aplicacao1.repository.ConvidadoRepository;
 import com.CursoSpring.Aplicacao1.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class EventoController {
     @Autowired
     private EventoRepository er;
+    @Autowired
+    private ConvidadoRepository cv;
     @RequestMapping(value="/cadastrarEvento",method = RequestMethod.GET)
     public String form(){
         return "evento/formEvento";
@@ -36,6 +40,16 @@ public class EventoController {
         ModelAndView mav = new ModelAndView("evento/detalhesEvento");
         mav.addObject("evento",evento);
         return mav;
+
+    }
+    @RequestMapping(value= "/{id}", method=RequestMethod.POST)
+    public String detalhesEventoPost(@PathVariable("id") long id, Convidado convidado){
+        Evento evento = er.findById(id);
+        convidado.setEvento(evento);
+        cv.save(convidado);
+
+        return "redirect:/{id}";
+
     }
 
 }
