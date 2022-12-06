@@ -29,6 +29,18 @@
 
         </form>
     </div>
+    <h5>Lista de Convidados</h5>
+    <div class="container" th:each="convidado : ${convidados}">
+
+        <div class="row">
+            <div class="input-field col s6">
+                <p><span th:text="${convidado.nomeConvidado}"></span></p>
+            </div>
+            <div class="input-field col s3">
+                <p><span th:text="${convidado.rg}"></span></p>
+            </div>
+        </div>
+    </div>
 
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
