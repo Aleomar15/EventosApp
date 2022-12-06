@@ -1,6 +1,7 @@
 package com.CursoSpring.Aplicacao1.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,9 +12,13 @@ public class Evento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotEmpty
     private String nome;
+    @NotEmpty
     private String local;
+    @NotEmpty
     private String data;
+    @NotEmpty
     private String horario;
     @OneToMany(mappedBy = "evento")
     private List<Convidado> convidados;

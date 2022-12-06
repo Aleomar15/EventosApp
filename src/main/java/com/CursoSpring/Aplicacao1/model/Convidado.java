@@ -1,13 +1,17 @@
 package com.CursoSpring.Aplicacao1.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
 
 @Entity
 public class Convidado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotEmpty
     private String rg;
+    @NotEmpty
     private String nomeConvidado;
     @ManyToOne
     private Evento evento;

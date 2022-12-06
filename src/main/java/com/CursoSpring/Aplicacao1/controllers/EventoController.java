@@ -6,10 +6,14 @@ import com.CursoSpring.Aplicacao1.repository.ConvidadoRepository;
 import com.CursoSpring.Aplicacao1.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class EventoController {
@@ -22,8 +26,13 @@ public class EventoController {
         return "evento/formEvento";
     }
     @RequestMapping(value="/cadastrarEvento",method = RequestMethod.POST)
-    public String form(Evento evento){
+    public String form(@Valid Evento evento,BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/cadastrarEvento";
+        }
         er.save(evento);
+        attributes.addFlashAttribute("mensagem", "Evento cadastrado com sucesso!");
         return  "redirect:/cadastrarEvento";
     }
     @RequestMapping("/eventos")
@@ -45,11 +54,17 @@ public class EventoController {
 
     }
     @RequestMapping(value= "/{id}", method=RequestMethod.POST)
-    public String detalhesEventoPost(@PathVariable("id") long id, Convidado convidado){
+    public String detalhesEventoPost(@PathVariable("id") long id, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem","Verifique os campos!");
+            return "redirect:/{id}";
+        }
         Evento evento = er.findById(id);
         convidado.setEvento(evento);
+        //evento.getConvidados().add(convidado);
+        //er.save(evento);
         cv.save(convidado);
-
+        attributes.addFlashAttribute("mensagem","Convidado adicionado com sucesso!");
         return "redirect:/{id}";
 
     }
